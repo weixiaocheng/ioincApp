@@ -13,7 +13,30 @@
     <ion-card-title>注册</ion-card-title>
   </ion-card-header>
   <ion-card-content>
-    
+    <div >
+      <ion-label> 用户名 </ion-label>
+      <ion-input type="text"  [(ngModel)]="username" placeholder="请输入用户名"></ion-input>
+    </div>
+    <div>
+        <ion-label> 手机号 </ion-label>
+        <ion-input type="text" [(ngModel)]="mobile" placeholder="请输入手机号"></ion-input>
+    </div>
+    <div>
+        <ion-label> 验证码 </ion-label>
+        <ion-input type="text" [(ngModel)]="code" placeholder="请输入验证码"></ion-input>
+    </div>
+    <div>
+       <ion-label> 密码 </ion-label>
+       <ion-input type="text" [(ngModel)]="password" placeholder="请输入密码"></ion-input>
+    </div>
+    <div>
+        <ion-label> 确认密码 </ion-label>
+        <ion-button  size="small" (click)="getValiCode()"> {{buttonString}} </ion-button>
+        <ion-input type="text" [(ngModel)]="code" placeholder="请输入确认密码"></ion-input>
+    </div>
+    <div>
+      <ion-button color="primary" (click)="registerApp()" expand="block"> 注册 </ion-button>
+    </div>
   </ion-card-content>
 </ion-card>
 </ion-content>
