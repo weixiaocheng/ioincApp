@@ -4,6 +4,10 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-欢迎来到首页
+<ion-content >   
+<ion-slides pager="true" [options]="slideOpts">
+  <ion-slide *ngFor="let item of bannerList">  
+    <img [src]="item.banner_url">
+  </ion-slide>
+</ion-slides>
 </ion-content>

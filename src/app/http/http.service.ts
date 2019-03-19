@@ -23,7 +23,7 @@ export class HttpService extends BaseFunction {
    * @param apiName
    * @param params
    */
-  get_request(apiName: string, params: {[key: string]: any; }) {
+  get_request(apiName: string, params?: {[key: string]: any; }) {
     const header = new HttpHeaders({
       'appversion' : '1.0.0',
       'deviceType' : 'ios',
@@ -40,7 +40,7 @@ export class HttpService extends BaseFunction {
    * @param apiName
    * @param params
    */
-  post_request(apiName: string, params: {[key: string]: any}) {
+  post_request(apiName: string, params?: {[key: string]: any}) {
     const header = new HttpHeaders({
       'appversion' : '1.0.0',
       'deviceType' : 'ios',
