@@ -22,6 +22,9 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
+  /**
+   * 用户登录
+   */
   loginApp() {
     if (this.usename === '') {
       this.presentToast('请输入用户名');
@@ -56,6 +59,11 @@ export class LoginPage implements OnInit {
     console.log('登录app');
   }
 
+  /**
+   * 显示弹出提示
+   * @param message
+   * @param postiton
+   */
   async presentToast(message: string, postiton?: 'top'|'middle'|'bottom') {
     const toast = await this.toastCtrl.create({
       message: message,
@@ -65,7 +73,10 @@ export class LoginPage implements OnInit {
     toast.present();
   }
 
-
+  /**
+   * 显示加载框
+   * @param message
+   */
   async presentLoading(message) {
     const loading = await this.loadCtrl.create({
       message: message,
@@ -74,4 +85,17 @@ export class LoginPage implements OnInit {
     await loading.present();
   }
 
+  /**
+   * 用户注册
+   */
+  userRegister() {
+    this.navCtrl.navigateForward('register');
+  }
+
+  /**
+  * 忘记密码
+  */
+  userForgetPassword() {
+    this.navCtrl.navigateForward('forget');
+  }
 }
