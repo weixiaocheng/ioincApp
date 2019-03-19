@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { TablsPage } from './tabls.page';
+import { LoginGuardGuard } from 'src/guard/login-guard.guard';
 
 const routes: Routes = [
   {
@@ -41,7 +42,8 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: '../cart/cart/cart.module#CartPageModule'
+            loadChildren: '../cart/cart/cart.module#CartPageModule',
+            canActivate: [LoginGuardGuard]
           }
         ]
       },
@@ -50,7 +52,8 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: '../mine/mine/mine.module#MinePageModule'
+            loadChildren: '../mine/mine/mine.module#MinePageModule',
+            canActivate: [LoginGuardGuard]
           }
         ]
       }

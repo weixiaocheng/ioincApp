@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+<ion-card >
+  <ion-card-header text-center>
+    <ion-card-title>登录</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <div class="login">
+      <!-- 显示账户密码登录 -->
+      <div>
+        <!-- 显示账户和密码的输入框 -->
+        <div>
+          <ion-label>账户</ion-label>
+          <ion-input type="tel" placeholder="请输入手机号" [(ngModel)]="usename">  </ion-input>
+        </div>
+        <div>
+          <ion-label>密码</ion-label>
+          <ion-input type="password" placeholder="请输入密码" [(ngModel)]="password"></ion-input>
+        </div>
+      </div>
+    </div>
+    <!-- 登录 -->
+    <div>
+      <ion-button (click)="loginApp()"  color="primary" expand="block" > 登录 </ion-button>
+    </div>
+    <!-- 忘记密码 和 注册 -->
+    <div class="register">
+     <ion-button size="small"  color="light"  >注册</ion-button>
+     <ion-button size="small"  color="light"  style="float:right">忘记密码</ion-button>
+    </div>
+    
+  </ion-card-content>
+</ion-card>
+</ion-content>
