@@ -42,7 +42,7 @@ export class HomePage implements OnInit {
     });
   }
 
-  getGoodList() {
+  getGoodList(event) {
     if (this.index === 0) {
       this.index = 1;
     }
@@ -52,6 +52,7 @@ export class HomePage implements OnInit {
     };
     this.httpres.get_request('Product/getProductList?', params).subscribe(data => {
       console.log(data);
+      event.target.complete();
       if (data['isError'] === false) {
         if (this.index === 1) {
           this.product_list = data['data'];
@@ -65,6 +66,9 @@ export class HomePage implements OnInit {
             this.product_list.push(element);
           });
           this.index ++ ;
+          if (data['data'].length < 5) {
+            event.target.disabled = true;
+          }
         } else {
           this.httpres.presentToast('没有更多的数据了');
         }
@@ -79,19 +83,11 @@ export class HomePage implements OnInit {
 
   doRefresh(event) {
     this.index = 1;
-    this.getGoodList();
-    setTimeout(() => {
-      console.log('Async operation has ended');
-      event.target.complete();
-    }, 2000);
+    this.getGoodList(event);
   }
 
   loadData(event) {
-    this.getGoodList();
-    setTimeout(() => {
-      console.log('Async operation has ended');
-      event.target.complete();
-    }, 2000);
+    this.getGoodList(event);
   }
 
 }
