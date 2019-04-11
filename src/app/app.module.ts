@@ -11,10 +11,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { LoginGuardGuard } from 'src/guard/login-guard.guard';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpService } from './http/http.service';
+import { SkuPageComponent } from './sku-page/sku-page.component';
 
 @NgModule({
-  declarations: [AppComponent],
-  entryComponents: [],
+  declarations: [AppComponent,
+    SkuPageComponent
+  ],
+  entryComponents: [
+    SkuPageComponent
+  ],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
   providers: [
     StatusBar,
