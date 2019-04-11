@@ -27,12 +27,17 @@ export class HttpService extends BaseFunction {
     const header = new HttpHeaders({
       'appversion' : '1.0.0',
       'deviceType' : 'ios',
-      'token': window.localStorage.getItem('token')
+      // 'token': window.localStorage.getItem('token'),
+      'Content-Type': 'application/x-www-form-urlencoded'
     });
     let url = this.baseIp + apiName;
-    url = url + this.mosaicJsonWithDict(params);
+    if (params) {
+      url = url + this.mosaicJsonWithDict(params);
+    }
     console.log(url);
-    return this.http.get(url, {headers: header});
+    return this.http.get(url, {
+      headers: header
+    });
   }
 
   /**
@@ -44,7 +49,7 @@ export class HttpService extends BaseFunction {
     const header = new HttpHeaders({
       'appversion' : '1.0.0',
       'deviceType' : 'ios',
-
+      'token': window.localStorage.getItem('token')
     });
     const url = this.baseIp + apiName + '?';
     const body = JSON.stringify(params);

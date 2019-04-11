@@ -10,4 +10,25 @@
     <img [src]="item.banner_url">
   </ion-slide>
 </ion-slides>
+<ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+<ion-list> 
+    <ion-item *ngFor="let item of product_list" style="--min-height : 100px">
+      <ion-thumbnail slot="start" style="height: 80px; width: 80px;">
+        <img [src]="item.product_main_url" >
+      </ion-thumbnail>
+    <ion-label>{{item.product_title}}
+      <br>
+      <label style="color:red">¥{{item.price}}</label>
+      <s style="color: #999999; margin-left: 10px">{{item.strik_price}}</s>
+    </ion-label>
+  </ion-item>
+</ion-list>
+<ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
