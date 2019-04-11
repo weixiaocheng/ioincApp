@@ -14,7 +14,7 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 <ion-list> 
-    <ion-item *ngFor="let item of product_list" style="--min-height : 100px">
+    <ion-item *ngFor="let item of product_list" style="--min-height : 100px" (click)="toProductDetail(item.product_id)">
       <ion-thumbnail slot="start" style="height: 80px; width: 80px;">
         <img [src]="item.product_main_url" >
       </ion-thumbnail>

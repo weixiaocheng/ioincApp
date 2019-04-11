@@ -32,7 +32,12 @@ export class HttpService extends BaseFunction {
     });
     let url = this.baseIp + apiName;
     if (params) {
-      url = url + this.mosaicJsonWithDict(params);
+      if (url.lastIndexOf('?')) {
+        url = url + this.mosaicJsonWithDict(params);
+      } else {
+        url = url + '?' + this.mosaicJsonWithDict(params);
+      }
+
     }
     console.log(url);
     return this.http.get(url, {

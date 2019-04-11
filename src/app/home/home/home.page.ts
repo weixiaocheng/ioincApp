@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, inject } from '@angular/core';
 import { HttpService } from 'src/app/http/http.service';
-import { IonSlides } from '@ionic/angular';
+import { IonSlides, NavController, IonInfiniteScroll } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -9,6 +9,7 @@ import { IonSlides } from '@ionic/angular';
 })
 export class HomePage implements OnInit {
   @ViewChild(IonSlides) slider: IonSlides;
+  @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   slideOpts = {
     speed: 1000,
     spaceBetween: 0,
@@ -22,12 +23,16 @@ export class HomePage implements OnInit {
 
   // 获取首页轮播
   bannerList = [];
-  constructor(private httpres: HttpService) {
+  constructor(
+    private httpres: HttpService,
+    private navCtrl: NavController
+    ) {
 
   }
 
   ngOnInit() {
     this.getBanner();
+    this.getGoodList();
   }
 
   getBanner() {
@@ -42,7 +47,7 @@ export class HomePage implements OnInit {
     });
   }
 
-  getGoodList(event) {
+  getGoodList(event?) {
     if (this.index === 0) {
       this.index = 1;
     }
@@ -52,12 +57,19 @@ export class HomePage implements OnInit {
     };
     this.httpres.get_request('Product/getProductList?', params).subscribe(data => {
       console.log(data);
-      event.target.complete();
+      if (event) {
+        event.target.complete();
+      }
       if (data['isError'] === false) {
         if (this.index === 1) {
           this.product_list = data['data'];
           this.index ++ ;
           console.log('13323' + this.product_list);
+          if (data['data'].length < 5) {
+            this.infiniteScroll.disabled = true;
+          } else {
+            this.infiniteScroll.disabled = false;
+          }
           return;
         }
 
@@ -71,23 +83,39 @@ export class HomePage implements OnInit {
           }
         } else {
           this.httpres.presentToast('没有更多的数据了');
+          event.target.disabled = true;
         }
       }
 
     },
     errMsg => {
       console.log(errMsg);
+      if (event) {
+        event.target.complete();
+      }
     }
     );
   }
 
+  /**
+   * 下拉刷新
+   * @param event
+   */
   doRefresh(event) {
     this.index = 1;
     this.getGoodList(event);
   }
 
+  /**
+   * 上拉加载
+   * @param event
+   */
   loadData(event) {
     this.getGoodList(event);
+  }
+
+  toProductDetail(id) {
+    this.navCtrl.navigateForward(`product?product_id=${id}`);
   }
 
 }
