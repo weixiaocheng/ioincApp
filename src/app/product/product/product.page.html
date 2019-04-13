@@ -1,0 +1,36 @@
+<ion-content >
+<div *ngIf="data">
+  <!-- 显示商品 首图 -->
+  <div>
+      <img src="{{data.product_main_url}}">
+    </div>
+    <!-- 显示标题 -->
+    <div style="height:12px; background-color:#f7f7f7"></div>
+    <div>
+      <ion-label style="padding: 15px;display: block;">{{data.product_title}} 
+        <br>
+        <label style="color:red">¥{{data.price}}</label><s style="margin-left:10px">¥{{data.strik_price}}</s>
+      </ion-label>
+    </div>
+    <div style="height:2px; background-color:#f7f7f7"></div>
+    <!-- 显示选择sku  -->
+    <div>
+      <ion-item detail lines="none" (click)="showSelectedSku()">
+          <ion-col size="3">请选择</ion-col>
+          <ion-col size="6" style="color:#cccccc; text-align: left;">选择sku</ion-col>
+      </ion-item>    
+    </div>
+    <div style="height:2px; background-color:#f7f7f7"></div>
+</div>
+<!-- 显示商品详情 -->
+<div id="html_content"></div>
+<!-- 显示下面的 菜单栏 -->
+<div id="bottom_menu">
+  <button>喜欢</button>
+  <button>购物车</button>
+  <button>加入购物车</button>
+  <button>立即购买</button>
+</div>
+<!-- 显示选择sku -->
+
+</ion-content>
